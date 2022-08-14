@@ -1,3 +1,5 @@
+//Variable declaration
+
 const submitBtn = document.querySelector(".submit");
 const previewCard = document.querySelector(".preview");
 const previewBtn = document.querySelector(".preview-btn");
@@ -11,12 +13,10 @@ const msg = document.querySelector("#msg");
 const msgInfo = document.querySelector(".msg-info");
 const errorMsg = document.querySelector(".error-msg");
 const messages = [];
-
 const validationStatus = {
   username: false,
   email: false,
 };
-
 const regEx = {
   name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letters plus accent marks.
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // follows correct e-mail format.
@@ -27,12 +27,12 @@ const addMsg = () => {
   msgPreview.name = username.value;
   msgPreview.email = email.value;
   msgPreview.msg = msg.value;
-  messages.push(msgPreview);
   previewCard.innerHTML = `<p>Thank you! This is your message: </p>
   <div class='preview-msg'><p><b>Username:</b> ${msgPreview.name}</p>
     <p><b>E-mail:</b> ${msgPreview.email}</p>
     <p><b>Message:</b><br></p><p id='msg-preview-box'> ${msgPreview.msg}</p></div>
     <p>Click Submit to finish</p><p onclick='exitPreview()' id='exit-preview'>X</p>`;
+  return msgPreview;
 };
 
 // Form Validation:
@@ -92,7 +92,7 @@ form.addEventListener("submit", (e) => {
     if (previewCard) {
       previewCard.classList.remove("preview-show");
     }
-    addMsg();
+    messages.push(addMsg());
     console.log(
       `%c You submitted the following data: `,
       "background-color: #006594; color: white; padding: 0 .5rem"

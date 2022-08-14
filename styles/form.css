@@ -117,6 +117,7 @@ body {
   min-width: 85%;
   max-width: 95%;
   overflow: scroll;
+  border-radius: 1rem;
   min-height: 60%;
 }
 
