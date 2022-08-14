@@ -267,24 +267,6 @@ footer {
   box-shadow: 1px 1px 3px rgb(0, 255, 136);
 }
 
-#clearPage {
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.cards-header {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  height: 5rem;
-  /* border: 5px solid white; */
-}
-
-.cards-header img {
-  width: 250px;
-  height: 190px;
-}
-
 .main-container {
   display: flex;
   width: 100%;
@@ -436,6 +418,9 @@ footer {
   .go-home-container {
     display: none;
   }
+  .search {
+    width: 70%;
+  }
   h1 {
     margin: 2rem 0;
     position: static;
@@ -451,11 +436,44 @@ footer {
   .leftSide {
     align-items: center;
     height: 100%;
+    width: 100%;
+    margin-top: 2rem;
+    gap: 1.5rem;
   }
+
+  .go-home-res {
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.3rem 1rem 0.5rem 1rem;
+    position: fixed;
+    width: fit-content;
+    color: var(--aquamarine);
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 4;
+    text-shadow: 2px 2px 5px var(--dark-purple);
+    height: 2.5rem;
+    background: rgba(83, 146, 136, 0.1);
+    border-radius: 1rem;
+  }
+
   .menu {
+    width: 70%;
+    align-self: center;
+    padding: 1rem;
+    background: linear-gradient(rgba(128, 76, 158, 0.7), rgba(4, 92, 114, 0.7));
     position: static;
-    margin: 5% auto 0;
+    border-radius: 1rem;
+    position: unset;
+    margin: 0;
+    box-shadow: 1px 1px 5px rgb(138, 75, 255);
   }
+
+  .menu button {
+    width: 70%;
+  }
+
   .card {
     width: 70%;
   }
@@ -464,6 +482,11 @@ footer {
   }
   .go-home-res {
     display: inline-block;
+  }
+
+  .filter-color {
+    background-color: rgba(38, 41, 80, 0.3);
+    mix-blend-mode: multiply;
   }
 }
 
@@ -481,19 +504,34 @@ footer {
   }
   footer {
     position: unset;
+    padding: 0 22%;
   }
   .cardContainer {
     padding: 0;
   }
 
-  .menu {
+  .leftSide {
+    margin-top: 2rem;
     width: 100%;
-    background-color: rgba(24, 24, 24, 0.5);
-    box-shadow: 2px 2px 5px rgba(38, 41, 80, 0.5);
+  }
+
+  .menu {
+    width: 80%;
+    align-self: center;
+    padding: 1rem;
+    position: static;
+    border-radius: 1rem;
+    position: unset;
+    margin-bottom: 2rem;
+    box-shadow: 1px 1px 5px rgb(138, 75, 255);
+  }
+
+  .menu button {
+    width: 70%;
   }
 
   .filter-color {
-    background-color: rgba(38, 41, 80, 0.3);
+    background-color: rgba(38, 41, 80, 0.5);
     mix-blend-mode: multiply;
   }
 }

@@ -48,16 +48,22 @@ body {
 }
 
 .go-home {
-  top: 1rem;
-  left: 1rem;
+  display: flex;
+  align-items: center;
+  top: 0.3rem;
+  left: 0.3rem;
   position: fixed;
   width: fit-content;
   color: var(--aquamarine);
   text-decoration: none;
   font-size: 1rem;
   cursor: pointer;
-  z-index: 5;
+  z-index: 4;
   text-shadow: 2px 2px 5px var(--dark-purple);
+  height: 2.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0 1rem;
+  border-radius: 1rem;
 }
 
 footer {
@@ -107,7 +113,7 @@ th {
 td {
   border: 1px solid var(--medium-purple);
   text-align: center;
-  padding: .7rem 2.5rem;
+  padding: 0.7rem 2.5rem;
 }
 
 td:hover {

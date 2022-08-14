@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/form.css" />
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
     <title>Get in touch</title>
   </head>
 
@@ -13,21 +14,24 @@
     <div class="bg-img"></div>
     <div class="form-page-container">
       <a class="go-home" href="../index.html">HOME</a>
-      <section>
+      <section id="title">
         <h1 class="h1-form">
           You can use the following form to reach out to us
         </h1>
       </section>
-
+      <div class="error-msg">
+        <span class="error-exit" onclick="exitError()">x</span>
+        Something went wrong. Verify that your data meets the form criteria.
+      </div>
       <section class="section-form">
         <form method="post" action="mailto:camilavictoriastefano@gmail.com">
           <fieldset>
             <div class="input-div">
-              <label for="uname">Name:</label>
+              <label for="username">Name:</label>
               <input
                 type="text"
-                id="uname"
-                name="uname"
+                id="username"
+                name="username"
                 placeholder="Name"
                 required
                 autofocus
@@ -39,6 +43,7 @@
               <input
                 type="email"
                 id="email"
+                name="email"
                 placeholder="E-mail"
                 size="30"
                 minlength="3"
@@ -50,7 +55,7 @@
             <div class="input-textarea">
               <textarea
                 id="msg"
-                name="message"
+                name="msg"
                 rows="10"
                 minlength="10"
                 maxlength="1500"

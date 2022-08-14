@@ -18,16 +18,16 @@ body {
   width: 100vw;
   background-size: cover;
   background-position: fixed;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   font-family: "Changa", sans-serif;
   color: var(--aquamarine);
-  text-shadow: 2px 2px 5px var(--dark-purple);
+  text-shadow: 1px 1px 5px rgba(32, 18, 41, 1);
 }
 
 .bg-img {
   background: linear-gradient(var(--dark-purple), var(--royal-purple));
-  width: 100%;
-  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   mix-blend-mode: overlay;
   position: absolute;
   opacity: 0.4;
@@ -48,6 +48,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  letter-spacing: 0.15ch;
 }
 
 .section-form {
@@ -62,8 +63,8 @@ body {
 .go-home {
   display: flex;
   align-items: center;
-  top: 0;
-  left: 0;
+  top: 0.3rem;
+  left: 0.3rem;
   position: fixed;
   width: fit-content;
   color: var(--aquamarine);
@@ -73,9 +74,9 @@ body {
   z-index: 4;
   text-shadow: 2px 2px 5px var(--dark-purple);
   height: 2.5rem;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  padding-left: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0 1rem;
+  border-radius: 1rem;
 }
 
 .preview {
@@ -95,12 +96,12 @@ body {
 
 .preview-show {
   opacity: 1;
-  font-size: 0.9rem;
-  padding: 2.5rem;
+  font-size: 0.8rem;
+  padding: 2rem;
   position: unset;
   height: 50%;
   transform: translateX(17%) scale(1.5);
-  background: linear-gradient(rgba(67, 44, 88, 0.8), rgba(44, 83, 88, 0.8));
+  background: linear-gradient(rgba(67, 44, 88, 0.9), rgba(44, 83, 88, 0.9));
   transition: 1s;
   display: flex;
   margin-top: 8rem;
@@ -115,27 +116,28 @@ body {
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
   min-width: 85%;
   max-width: 95%;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow: scroll;
   min-height: 60%;
 }
 
 #exit-preview {
   width: fit-content;
-  bottom: 0.5rem;
-  font-size: 1rem;
+  top: 1rem;
   right: 1rem;
+  font-size: 0.7rem;
   position: absolute;
-  color: white;
+  color: rgb(12, 255, 154);
   border-radius: 1rem;
-  box-shadow: 1px 1px 2px rgba(52, 37, 56, 0.603);
-  padding: 0.2rem 1rem;
+  border: 0.05rem solid rgba(12, 255, 154, 0.5);
+  padding: 0.2rem 0.7rem;
   outline: none;
   cursor: pointer;
 }
 
 #exit-preview:hover {
-  background-color: rgba(181, 91, 255, 0.1);
+  background-color: rgba(115, 255, 201, 0.3);
+  text-shadow: none;
+  transition: 0.5s;
 }
 
 form {
@@ -153,7 +155,7 @@ form {
 form input {
   display: flex;
   width: 100%;
-  background-color: rgba(62, 43, 66, 0.5);
+  background-color: rgba(34, 26, 43, 0.5);
   color: var(--aquamarine);
   font-size: 1rem;
   padding: 0.45rem;
@@ -168,6 +170,36 @@ form input:focus {
 
 form label {
   font-size: 1.1rem;
+}
+
+.error-msg {
+  display: none;
+}
+
+.error-exit {
+  position: absolute;
+  font-size: 0.9rem;
+  top: 0.3rem;
+  right: 0.3rem;
+  padding: 0 0.7rem;
+  cursor: pointer;
+}
+
+.error-show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 5rem;
+  position: absolute;
+  z-index: 10;
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+  background: linear-gradient(rgba(128, 76, 158, 1), rgba(4, 92, 114, 1));
+  border: 1.5px solid rgb(12, 255, 154);
+  border-bottom: 2px solid rgb(164, 115, 255);
+  border-left: 2px solid rgb(164, 115, 255);
+  border-radius: 1rem;
 }
 
 fieldset {
@@ -197,8 +229,9 @@ fieldset {
 textarea {
   width: 100%;
   max-height: 300px;
+  resize: none;
   border-radius: 1rem;
-  background-color: rgba(53, 38, 56, 0.5);
+  background-color: rgba(34, 26, 43, 0.5);
   color: var(--aquamarine);
   font-size: 1.05rem;
   padding: 0.8rem;
@@ -271,9 +304,9 @@ footer {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   form {
-    min-width: 50%;
+    min-width: 60%;
   }
   h1 {
     font-size: 1.3rem;
@@ -292,23 +325,33 @@ footer {
     gap: 1rem;
     position: absolute;
     left: 30%;
-    box-shadow: 1px 5px 30px rgb(195, 127, 209);
+    padding-bottom: 0;
+    border: 1px solid rgb(12, 255, 154);
+    /* box-shadow: 1px 5px 10px rgb(195, 127, 209); */
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   form {
     min-width: 80%;
   }
-
   h1 {
     font-size: 1rem;
   }
-
+  #title {
+    width: 70%;
+  }
+  footer {
+    position: unset;
+  }
   .preview-show {
+    font-size: 0.8rem;
     margin-top: 10rem;
     left: 25%;
     height: 35%;
     width: 50%;
+  }
+  .error-show {
+    width: 15rem;
   }
 }

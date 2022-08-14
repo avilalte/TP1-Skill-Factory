@@ -1,26 +1,32 @@
 const submitBtn = document.querySelector(".submit");
 const previewCard = document.querySelector(".preview");
 const previewBtn = document.querySelector(".preview-btn");
-const userNameInput = document.querySelector("#uname");
-const emailInput = document.querySelector("#email");
-const msgInput = document.querySelector("#msg");
 const form = document.querySelector("form");
 const msgArea = document.querySelector("#msg");
+const username = document.querySelector("#username");
+const usernameInfo = document.querySelector(".name-info");
+const email = document.querySelector("#email");
 const emailInfo = document.querySelector(".email-info");
-const nameInfo = document.querySelector(".name-info");
+const msg = document.querySelector("#msg");
 const msgInfo = document.querySelector(".msg-info");
-
+const errorMsg = document.querySelector(".error-msg");
 const messages = [];
+
+const validationStatus = {
+  username: false,
+  email: false,
+};
+
 const regEx = {
-  name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // alphanumeric plus accent marks.
+  name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letters plus accent marks.
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // follows correct e-mail format.
 };
 
 const addMsg = () => {
   const msgPreview = {};
-  msgPreview.name = userNameInput.value;
-  msgPreview.email = emailInput.value;
-  msgPreview.msg = msgInput.value;
+  msgPreview.name = username.value;
+  msgPreview.email = email.value;
+  msgPreview.msg = msg.value;
   messages.push(msgPreview);
   previewCard.innerHTML = `<p>Thank you! This is your message: </p>
   <div class='preview-msg'><p><b>Username:</b> ${msgPreview.name}</p>
@@ -29,18 +35,28 @@ const addMsg = () => {
     <p>Click Submit to finish</p><p onclick='exitPreview()' id='exit-preview'>X</p>`;
 };
 
+// Form Validation:
+
 const formValidation = (e) => {
-  if (e.target.id == "uname") {
-    if (!userNameInput.value.match(regEx.name)) {
-      nameInfo.innerHTML = `Incorrect name. Only letters and numbers allowed.`;
-      nameInfo.classList.add("show-info");
-    } else nameInfo.classList.remove("show-info");
+  if (e.target.id == "username") {
+    if (regEx.name.test(username.value)) {
+      usernameInfo.classList.remove("show-info");
+      validationStatus.username = true;
+    } else {
+      usernameInfo.innerHTML = `Incorrect name. Only letters allowed.`;
+      usernameInfo.classList.add("show-info");
+      validationStatus.username = false;
+    }
   }
   if (e.target.id == "email") {
-    if (emailInput.value && !emailInput.value.match(regEx.email)) {
-      emailInfo.innerHTML = `Incorrect e-mail format.`;
+    if (regEx.email.test(email.value)) {
+      emailInfo.classList.remove("show-info");
+      validationStatus.email = true;
+    } else {
+      emailInfo.innerHTML = `Please insert a valid e-mail.`;
       emailInfo.classList.add("show-info");
-    } else emailInfo.classList.remove("show-info");
+      validationStatus.email = false;
+    }
   }
   if (e.target.id == "msg") {
     if (msgArea.value.length == 1500) {
@@ -48,41 +64,67 @@ const formValidation = (e) => {
       msgInfo.classList.add("show-info");
     } else msgInfo.classList.remove("show-info");
   }
+  if (username.value == "") usernameInfo.classList.remove("show-info");
+  if (email.value == "") emailInfo.classList.remove("show-info");
 };
 
-[userNameInput, emailInput, msgInput].forEach((input) => {
-  input.addEventListener("keyup", formValidation);
-});
-
-form.addEventListener("submit", () => {
-  if (previewCard) previewCard.classList.remove("preview-show");
-  addMsg();
-  console.log(
-    `%c You submitted the following data: `,
-    "background-color: #00b69e; color: white; padding: 0 .5rem"
-  );
-  console.log(
-    `%c Name: ${messages[messages.length - 1].name}`,
-    "background-color: #00b69e; color: white"
-  );
-  console.log(
-    `%c E-mail: ${messages[messages.length - 1].email}`,
-    "background-color: #00b69e; color: white"
-  );
-  console.log(
-    `%c Message: ${messages[messages.length - 1].msg}`,
-    "background-color: #00b69e; color: white; padding: 0 .5rem"
-  );
-});
-
-previewBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (previewCard.classList.contains("preview-show"))
-    previewCard.classList.remove("preview-show");
-  addMsg();
-  previewCard.classList.add("preview-show");
-});
+// Exit buttons
 
 const exitPreview = () => {
   previewCard.classList.remove("preview-show");
 };
+
+const exitError = () => {
+  errorMsg.classList.remove("error-show");
+};
+
+// ------------------------
+
+//Event Listeners.
+
+[username, email, msg].forEach((input) => {
+  input.addEventListener("keyup", formValidation);
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (validationStatus.username && validationStatus.email) {
+    if (previewCard) {
+      previewCard.classList.remove("preview-show");
+    }
+    addMsg();
+    console.log(
+      `%c You submitted the following data: `,
+      "background-color: #006594; color: white; padding: 0 .5rem"
+    );
+    console.log(
+      `%c Name: ${messages[messages.length - 1].name}`,
+      "background-color: #006594; color: white"
+    );
+    console.log(
+      `%c E-mail: ${messages[messages.length - 1].email}`,
+      "background-color: #006594; color: white"
+    );
+    console.log(
+      `%c Message: ${messages[messages.length - 1].msg}`,
+      "background-color: #006594; color: white; padding: 0 .5rem"
+    );
+  } else {
+    errorMsg.classList.add("error-show");
+    e.preventDefault();
+    return false;
+  }
+});
+
+previewBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (validationStatus.username && validationStatus.email) {
+    if (previewCard.classList.contains("preview-show"))
+      previewCard.classList.remove("preview-show");
+    addMsg();
+    previewCard.classList.add("preview-show");
+  } else {
+    previewCard.classList.remove("preview-show");
+    errorMsg.classList.add("error-show");
+  }
+});
