@@ -48,9 +48,9 @@ body {
 .filter-color {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(49, 59, 192, 0.1);
+  background-color: rgba(68, 75, 175, 0.25);
   top: 0;
-  mix-blend-mode: overlay;
+  mix-blend-mode: multiply;
   z-index: -3;
   position: fixed;
 }
@@ -60,7 +60,7 @@ h1 {
   font-size: 6rem;
   position: fixed;
   margin: 4% 0 0 4%;
-  color: rgb(87, 255, 177);
+  color: rgb(131, 255, 218);
   text-shadow: 1px 1px 100px rgb(0, 207, 121);
   animation: text-pulse 2s infinite;
 }
@@ -125,6 +125,7 @@ h1 span {
   transition: 0.4s;
   cursor: pointer;
   animation: pulse 3s infinite;
+  border: 1px solid rgb(12, 255, 154);
 }
 
 .card:hover {
@@ -252,7 +253,7 @@ footer {
   bottom: 0;
   position: fixed;
   z-index: 5;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(12, 255, 182, 0.25));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(12, 255, 182, 0.15));
 }
 
 .menu button:nth-of-type(3) {
