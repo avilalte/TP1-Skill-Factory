@@ -1,4 +1,6 @@
-**Skill Factory - First Project.** HTML - CSS - Javascript.
+## **Skill Factory - Checkpoint 1.** HTML - CSS - Javascript.
+
+---
 
 The goal was to create a site with 3 pages which would contain in no specific order: a contact form, a users table, and a set of cards displaying information about Rick and Morty characters.
 
